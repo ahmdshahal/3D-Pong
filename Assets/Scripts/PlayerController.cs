@@ -6,8 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] KeyCode rightKey;
     [SerializeField] KeyCode leftKey;
-    [SerializeField] int speed;
     [SerializeField] bool isLocal;
+
+    [SerializeField] ScoreManager manager;
+
+    public int speed;
 
     private Rigidbody rb;
 
@@ -15,6 +18,11 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         MoveObject(GetInput());
+
+        if (manager.isGameOver)
+        {
+            speed = 0;
+        }
     }
 
     private Vector3 GetInput()

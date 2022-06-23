@@ -9,6 +9,7 @@ public class BallSpawnerManager : MonoBehaviour
 
     [SerializeField] Transform ballParent;
     [SerializeField] GameObject ball;
+    [SerializeField] ScoreManager manager;
     [SerializeField] List<GameObject> spawnPosition;
 
     private List<GameObject> ballList;
@@ -28,11 +29,11 @@ public class BallSpawnerManager : MonoBehaviour
             GenerateBallSpawnPosition();
             timer -= spawnInterval;
         }
-    }
 
-    public void RandomGenerateBall()
-    {
-        int spawner = Random.Range(0, 4);
+        if (manager.isGameOver)
+        {
+            timer = 0;
+        }
     }
 
     public void GenerateBallSpawnPosition()
@@ -66,5 +67,11 @@ public class BallSpawnerManager : MonoBehaviour
         SpawnedBall.SetActive(true);
 
         ballList.Add(SpawnedBall);
+    }
+
+    public void RemoveBall(GameObject spawnedBall)
+    {
+        ballList.Remove(spawnedBall);
+        Destroy(spawnedBall);
     }
 }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    public Vector3 direction;
     [SerializeField] int earlySpeed;
-    [SerializeField] int speedGrounded;
     [SerializeField] int speed;    
 
     [SerializeField] Collider[] goal;
+    [SerializeField] ScoreManager score;
+    [SerializeField] BallSpawnerManager spawner;
+
+    [HideInInspector] public Vector3 direction;
 
     private Rigidbody rb;
 
@@ -23,7 +25,8 @@ public class BallController : MonoBehaviour
     {        
         if (collision.gameObject.tag == "Player" ||
            collision.gameObject.tag == "Tower" ||
-           collision.gameObject.tag == "Ball")
+           collision.gameObject.tag == "Ball" ||
+           collision.gameObject.tag == "Wall")
         {
             rb.constraints = RigidbodyConstraints.FreezePositionY;
             if (rb.velocity.magnitude < speed)
@@ -33,31 +36,39 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
-        /*if (collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Ground")
         {
-            rb.velocity = rb.velocity.normalized * speedGrounded;
-        }*/
+            rb.constraints = RigidbodyConstraints.None;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other == goal[0])
         {
-
+            score.AddP1Score(1);
+            spawner.RemoveBall(gameObject);
+            Debug.Log("Point +");
         }
         if (other == goal[1])
         {
-
+            score.AddP2Score(1);
+            spawner.RemoveBall(gameObject);
+            Debug.Log("Point +");
         }
         if (other == goal[2])
         {
-
+            score.AddP3Score(1);
+            spawner.RemoveBall(gameObject);
+            Debug.Log("Point +");
         }
         if (other == goal[3])
         {
-
+            score.AddP4Score(1);
+            spawner.RemoveBall(gameObject);
+            Debug.Log("Point +");
         }
     }
 }
