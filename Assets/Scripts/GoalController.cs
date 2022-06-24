@@ -4,29 +4,17 @@ using UnityEngine;
 
 public class GoalController : MonoBehaviour
 {
-    public GameObject[] goal;
-    [SerializeField] ScoreManager manager;
+    [SerializeField] GameObject[] goal;
+    [SerializeField] ScoreManager scoreManager;
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if(other.gameObject.tag == "Ball")
+        if (scoreManager.isGameOver)
         {
-            if (other == goal[0])
-            {
-                manager.AddP1Score(1);
-            }
-            if (other == goal[1])
-            {
-                manager.AddP1Score(1);
-            }
-            if (other == goal[2])
-            {
-                manager.AddP1Score(1);
-            }
-            if (other == goal[3])
-            {
-                manager.AddP1Score(1);
-            }
+            goal[0].SetActive(false);
+            goal[1].SetActive(false);
+            goal[2].SetActive(false);
+            goal[3].SetActive(false);
         }
     }
 }

@@ -28,19 +28,18 @@ public class BallController : MonoBehaviour
            collision.gameObject.tag == "Ball" ||
            collision.gameObject.tag == "Wall")
         {
-            rb.constraints = RigidbodyConstraints.FreezePositionY;
             if (rb.velocity.magnitude < speed)
             {
                 rb.velocity = rb.velocity.normalized * speed;
             }
         }
-    }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Player" ||
+           collision.gameObject.tag == "Tower" ||
+           collision.gameObject.tag == "Wall")
         {
-            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+
         }
     }
 
@@ -50,25 +49,26 @@ public class BallController : MonoBehaviour
         {
             score.AddP1Score(1);
             spawner.RemoveBall(gameObject);
-            Debug.Log("Point +");
         }
         if (other == goal[1])
         {
             score.AddP2Score(1);
             spawner.RemoveBall(gameObject);
-            Debug.Log("Point +");
         }
         if (other == goal[2])
         {
             score.AddP3Score(1);
             spawner.RemoveBall(gameObject);
-            Debug.Log("Point +");
         }
         if (other == goal[3])
         {
             score.AddP4Score(1);
             spawner.RemoveBall(gameObject);
-            Debug.Log("Point +");
+        }
+
+        if (other.CompareTag("Destroyer"))
+        {
+            spawner.DestroyBall(gameObject);
         }
     }
 }

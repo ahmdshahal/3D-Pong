@@ -12,8 +12,9 @@ public class BallSpawnerManager : MonoBehaviour
     [SerializeField] ScoreManager manager;
     [SerializeField] List<GameObject> spawnPosition;
 
+    [HideInInspector] public float timer;
+
     private List<GameObject> ballList;
-    private float timer;
 
     private void Start()
     {
@@ -72,6 +73,10 @@ public class BallSpawnerManager : MonoBehaviour
     public void RemoveBall(GameObject spawnedBall)
     {
         ballList.Remove(spawnedBall);
+    }
+
+    public void DestroyBall(GameObject spawnedBall)
+    {
         Destroy(spawnedBall);
     }
 }

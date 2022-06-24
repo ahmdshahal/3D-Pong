@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Ball
   - Wall
+  - Destroyer
   layers:
   - Default
   - TransparentFX

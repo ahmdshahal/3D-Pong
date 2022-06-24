@@ -14,4 +14,10 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
+    }
 }

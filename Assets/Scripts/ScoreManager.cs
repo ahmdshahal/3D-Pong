@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] GameObject gameOver;
     [SerializeField] bool[] losePlayer;
     [SerializeField] GameObject[] wall;
-    [SerializeField] PlayerController[] player;
+    [SerializeField] GameObject[] player;
 
     [HideInInspector] public bool isGameOver;
 
@@ -25,7 +25,7 @@ public class ScoreManager : MonoBehaviour
         if(playerScore[0] >= maxScore)
         {
             wall[0].SetActive(true);
-            player[0].speed = 0;
+            player[0].SetActive(false);
             losePlayer[0] = true;
             playerLose += 1;
         }
@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour
         if (playerScore[1] >= maxScore)
         {
             wall[1].SetActive(true);
-            player[1].speed = 0;
+            player[1].SetActive(false);
             losePlayer[1] = true;
             playerLose += 1;
         }
@@ -51,7 +51,7 @@ public class ScoreManager : MonoBehaviour
         if (playerScore[2] >= maxScore)
         {
             wall[2].SetActive(true);
-            player[2].speed = 0;
+            player[2].SetActive(false);
             losePlayer[2] = true;
             playerLose += 1;
         }
@@ -64,7 +64,7 @@ public class ScoreManager : MonoBehaviour
         if (playerScore[3] >= maxScore)
         {
             wall[3].SetActive(true);
-            player[3].speed = 0;
+            player[3].SetActive(false);
             losePlayer[3] = true;
             playerLose += 1;
         }
