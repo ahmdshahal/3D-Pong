@@ -44,7 +44,7 @@ public class BallSpawnerManager : MonoBehaviour
             return;
         }
 
-        int randomIndex = Random.Range(0, 3);
+        int randomIndex = Random.Range(0, 4);
         Vector3 position = new Vector3(spawnPosition[randomIndex].transform.position.x, spawnPosition[randomIndex].transform.position.y, spawnPosition[randomIndex].transform.position.z);
 
         if(randomIndex == 0)

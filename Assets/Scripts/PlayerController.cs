@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
             {
                 return Vector3.back * speed;
             }
-            else if (Input.GetKey(leftKey))
+            if (Input.GetKey(leftKey))
             {
                 return Vector3.forward * speed;
             }
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
             {
                 return Vector3.right * speed;
             }
-            else if (Input.GetKey(leftKey))
+            if (Input.GetKey(leftKey))
             {
                 return Vector3.left * speed;
             }

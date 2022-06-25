@@ -21,6 +21,15 @@ public class BallController : MonoBehaviour
         rb.velocity = direction * earlySpeed;
     }
 
+    private void Update()
+    {
+        if(transform.position.y <= -10)
+        {
+            spawner.DestroyBall(gameObject);
+            Debug.Log("Destroyed");
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {        
         if (collision.gameObject.tag == "Player" ||
@@ -39,13 +48,17 @@ public class BallController : MonoBehaviour
            collision.gameObject.tag == "Wall")
         {
             rb.constraints = RigidbodyConstraints.FreezePositionY;
-
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other == goal[0])
+        if (other.gameObject.tag == "Goal")
+        {
+            rb.constraints = RigidbodyConstraints.None;
+        }
+
+        if (other == goal[0])
         {
             score.AddP1Score(1);
             spawner.RemoveBall(gameObject);
